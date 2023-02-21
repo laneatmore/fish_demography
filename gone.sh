@@ -60,3 +60,4 @@ mv Output_Ne_$prefix.$rep ../results
 
 python cat_results.py $prefix
 
+scp $prefix/results/${prefix}_* ../results/

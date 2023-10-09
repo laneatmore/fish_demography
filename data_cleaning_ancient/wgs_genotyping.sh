@@ -19,9 +19,8 @@ nInd=86
 
 angsd -b $prefix.list -ref $REF -sites maf0.01.post0.95.snp_list.txt \
 -out ../Genotyping/whole_genome/$prefix.maf0.01.post0.95 \
--uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -trim 0 -C 50 \
--minInd 3 -minMapQ 20 -minQ 20 -setMinDepth 1 -setMaxDepth 30 -doCounts 1 \
--GL 1 -doGlf 1 -noTrans 1 -nThreads 10
+-doCounts 1 \
+-GL 1 -doGlf 1 -nThreads 10
 
 #angsd -glf ../Genotyping/$prefix.glf.gz -ref $REF -fai $REF.fai -nInd $nInd \
 #-doMaf 1 -doPost 2 \
@@ -32,10 +31,7 @@ angsd -b $prefix.list -ref $REF -sites maf0.01.post0.95.snp_list.txt \
 #-out ../Genotyping/$prefix.maf0.01
 
 angsd -glf ../Genotyping/whole_genome/$prefix.maf0.01.post0.95.glf.gz -ref $REF -fai $REF.fai -nInd $nInd \
--doMaf 1 -doPost 2 \
+-doMaf 1 -sites maf0.01.post0.95.snp_list.txt \
 -doMajorMinor 4 \
 -doPlink 2 -doGeno 3 \
--skipTriallelic \
--minMaf 0.01 \
--postCutoff 0.95 \
 -out ../Genotyping/$prefix.maf0.01.post0.95

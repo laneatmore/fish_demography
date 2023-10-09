@@ -34,4 +34,5 @@ angsd -glf ../Genotyping/whole_genome/$prefix.maf0.01.post0.95.glf.gz -ref $REF 
 -doMaf 1 -sites maf0.01.post0.95.snp_list.txt \
 -doMajorMinor 4 \
 -doPlink 2 -doGeno 3 \
+-doPost 1 \
 -out ../Genotyping/$prefix.maf0.01.post0.95

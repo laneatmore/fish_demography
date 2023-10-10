@@ -18,10 +18,12 @@ chr=$2
 REF=/cluster/projects/nn9244k/databases/herring/ref_genome/Ch_v2.0.2.fasta
 nInd=86
 
+#make sure to use glf 4 otherwise angsd will rewrite all the chromosome names as "1" in the output files, which
+#is a stupid feature and a nightmare to deal with
 angsd -b $prefix.list -r $chr -ref $REF -out ../Genotyping/$prefix \
 -uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -trim 0 -C 50 \
 -minInd 3 -minMapQ 20 -minQ 20 -setMinDepth 1 -setMaxDepth 30 -doCounts 1 \
--GL 1 -doGlf 1 -noTrans 1 -nThreads 10
+-GL 1 -doGlf 4 -noTrans 1 -nThreads 10
 
 #angsd -glf ../Genotyping/$prefix.glf.gz -ref $REF -fai $REF.fai -nInd $nInd \
 #-doMaf 1 -doPost 2 \

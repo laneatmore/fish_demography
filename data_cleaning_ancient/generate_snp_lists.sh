@@ -24,7 +24,7 @@ module load Anaconda3/2022.10
 echo "activating conda"
 conda activate /cluster/projects/nn9244k/python3
 
-for chr in {1..\26}; do gunzip -c all.chr$chr.maf0.01.post0.95.mafs.gz | \
+for chr in {1..26}; do gunzip -c all.chr$chr.maf0.01.post0.95.mafs.gz | \
 cut -f 1,2,3,4 | tail -n +1 > \
 all.chr$chr.maf0.01.post0.95.snp_list.txt; done
  

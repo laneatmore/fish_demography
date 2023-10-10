@@ -7,6 +7,7 @@ for chr in {1..26}; do sbatch genotyping_by_chr_angsd.sh {bam list prefix} $chr;
 sbatch generate_snp_lists.sh #requires replace_chr.py, call from directory with output angsd files
 
 #generate whole genome glf and tped/tmap files with the whole genome snp list
+#ACTUALLY, re-run with the SNP list but ask for glf 4 output -- then you can cat all the glf files together and they will have the correct chromosome names
 
 sbatch wgs_genotyping.sh all
 

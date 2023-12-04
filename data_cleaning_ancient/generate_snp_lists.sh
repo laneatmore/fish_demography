@@ -24,15 +24,17 @@ module load Anaconda3/2022.10
 echo "activating conda"
 conda activate /cluster/projects/nn9244k/python3
 
-for chr in {1..26}; do gunzip -c all.chr$chr.maf0.01.post0.95.mafs.gz | \
+prefix=$1
+
+for chr in {1..26}; do gunzip -c $prefix.chr$chr.mafs.gz | \
 cut -f 1,2,3,4 | tail -n +1 > \
-all.chr$chr.maf0.01.post0.95.snp_list.txt; done
+$prefix.chr$chr.snps.list; done
  
-python replace_chr.py
+#python replace_chr.py
 
 echo "indexing whole genome list"
-angsd sites index snp_list.txt
+#angsd sites index $prefix.chr$chr.snps.list
 
-for chr in {1..26}; do angsd sites index chr$chr.snp_list.txt; done
+for chr in {1..26}; do angsd sites index $prefix.chr$chr.snps.list; done
 
-wc -l snp_list.txt
+wc -l $prefix.chr$chr.snps.list

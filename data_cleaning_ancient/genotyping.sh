@@ -20,27 +20,24 @@ nInd=84
 
 #now we want the genotype likelihoods
 
-angsd -b $prefix.list -r $chr -ref $REF -out ../Genotyping/$prefix \
+angsd -b $prefix.list -r $chr -ref $REF -out ../Genotyping/$prefix.MQ20.post0.95 \
 -uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -trim 0 -C 50 -baq 1 \
--minMapQ 30 -minQ 20 -minInd 3 -setMinDepth 3 -noTrans 1 \
--setMaxDepth 30 -doCounts 1 \
--GL 1 -doGlf 1 -nThreads 10
-
-#mv ../Genotyping/$prefix.arg ../Genotyping/$prefix.glf_creation.arg
-#play around with the cut off value to see what's right for the data
-#to determine which GL to keep
-
-#for c in 0.5 0.6 0.7 0.8 0.9 0.95; do \
-#angsd -glf ../Genotyping/$prefix.glf.gz -r $chr -ref $REF -fai $REF.fai -nInd $nInd -out ../Genotyping/$prefix.95GL \
-#-doMajorMinor 4 -doGeno 2 -doPost 2 -doMaf 1 -postCutoff 0.95 -minMaf 0.01
+-minMapQ 20 -minQ 20 -minInd 3 -setMinDepth 3 \
+-setMaxDepth 200 -doCounts 1 \
+-GL 1 -doGlf 2 -doMajorMinor 2 -rmTrans 1 \
+-doGeno 2 -doPost 2 \
+-skipTriallelic 1 \
+-postCutoff 0.95 \
+-nThreads 10
 
 
-#angsd -glf ../Genotyping/$prefix.glf.gz -r $chr -ref $REF -fai $REF.fai -nInd $nInd -out ../Genotyping/$prefix.post0.95 \
-#-doMajorMinor 4 -doGeno 3 -doPost 2 -doMaf 1 -postCutoff 0.95 -skipTriallelic 1 -doGlf 2 
-
-
-#angsd -glf ../Genotyping/$prefix.glf.gz -ref $REF -fai $REF.fai -nInd $nInd -out ../Genotyping/$prefix.pval1e6.NOMAF \
-#-doMajorMinor 4 -doGeno 2 -doPost 2 -doMaf 1 -SNP_pval 1e-6 -skipTriallelic 1 -doPlink 2 -doGlf 2
-
-#$c; done
-
+angsd -b $prefix.list -r $chr -ref $REF -out ../Genotyping/$prefix.MQ20.post0.95.maf0.01 \
+-uniqueOnly 1 -remove_bads 1 -only_proper_pairs 1 -trim 0 -C 50 -baq 1 \
+-minMapQ 20 -minQ 20 -minInd 3 -setMinDepth 3 \
+-setMaxDepth 200 -doCounts 1 \
+-GL 1 -doGlf 2 -doMajorMinor 2 -rmTrans 1 \
+-doGeno 2 -doPost 2 \
+-skipTriallelic 1 \
+-postCutoff 0.95 \
+-doMaf 1 -minMaf 0.01 \
+-nThreads 10

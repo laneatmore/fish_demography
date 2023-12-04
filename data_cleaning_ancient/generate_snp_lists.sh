@@ -27,7 +27,7 @@ conda activate /cluster/projects/nn9244k/python3
 prefix=$1
 
 for chr in {1..26}; do gunzip -c $prefix.chr$chr.mafs.gz | \
-cut -f 1,2,3,4 | tail -n +1 > \
+cut -f 1,2,3,4 | tail -n +2 > \
 $prefix.chr$chr.snps.list; done
  
 #python replace_chr.py

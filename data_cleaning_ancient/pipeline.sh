@@ -2,27 +2,9 @@
 
 for chr in {1..26}; do sbatch genotyping.sh {bam list prefix} $chr; done
 
-for chr in {1..26}; do sbatch genotyping_2.sh {bam list prefix} $chr; done
-
-#convert plink to bed
-
-for chr in {1..26}; do plink --tfile $prefix.chr$chr --chr-set 26 --double-id --make-bed --out plink/$prefix.chr$chr; done
-
-#rename chromosomes for plink
-
-for chr in {1..26}; do sbatch update-chr_plink.sh $prefix $chr; done
-
-#combine
-
-plink --bfile $prefix.chr1 --merge-list merge-list.txt --chr-set 26 --double-id --make-bed --out $prefix.ALL
-
-#do the same for beagle!
-#make sure prefixes are in the correct order!! (chromosome LAST)
-
-sbatch update_chr_beagle.sh $prefix
-
-
 #generate snp lists and then cat them into a whole genome snp list
+
+
 
 #sbatch generate_snp_lists.sh #requires replace_chr.py, call from directory with output angsd files
 

@@ -30,3 +30,28 @@ prefix=$1
 
 ##select projections and input them in the following line to run the program
 ./easySFS.py -i $prefix.vcf.gz -p pops.txt --proj=[insert projection] -a -v
+
+
+###after running, need to combine chromosomes for subsequent analysis
+
+#run per pop
+for chr in {1..26}; do cat chr${chr}_output/fastsimcoal2/NorthSea_MAFpop0.obs | head -3 | tail -1 >> tmp; done
+for col in {1..6}; do cut -d ' ' -f${col} tmp | awk '{sum+=$1;} END{print sum;}' >> tmp2; done
+cat tmp2 | tr '\n' ' ' > NorthSea.sfs
+
+for chr in {1..26}; do cat chr${chr}_output/fastsimcoal2/CelticSea_MAFpop0.obs | head -3 | tail -1 >> tmp; done
+for col in {1..6}; do cut -d ' ' -f${col} tmp | awk '{sum+=$1;} END{print sum;}' >> tmp2; done
+cat tmp2 | tr '\n' ' ' > CelticSea.sfs
+
+for chr in {1..26}; do cat chr${chr}_output/fastsimcoal2/IsleOfMan_MAFpop0.obs | head -3 | tail -1 >> tmp; done
+for col in {1..6}; do cut -d ' ' -f${col} tmp | awk '{sum+=$1;} END{print sum;}' >> tmp2; done
+cat tmp2 | tr '\n' ' ' > IsleOfMan.sfs
+
+for chr in {1..26}; do cat chr${chr}_output/fastsimcoal2/Downs_MAFpop0.obs | head -3 | tail -1 >> tmp; done
+for col in {1..6}; do cut -d ' ' -f${col} tmp | awk '{sum+=$1;} END{print sum;}' >> tmp2; done
+cat tmp2 | tr '\n' ' ' > Downs.sfs
+
+
+for chr in {1..26}; do cat chr${chr}_output/fastsimcoal2/Binsa_MAFpop0.obs | head -3 | tail -1 >> tmp; done
+for col in {1..6}; do cut -d ' ' -f${col} tmp | awk '{sum+=$1;} END{print sum;}' >> tmp2; done
+cat tmp2 | tr '\n' ' ' > Binsa.sfs
